@@ -5,7 +5,6 @@ corrector.LoadLangModel('en.bin')
 
 def fix_fragment(fragment: str) -> str:
     corrected = corrector.FixFragment(fragment)
-    # print("corrected:", corrected)
     return corrected
 
 if __name__ == "__main__":
