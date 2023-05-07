@@ -9,6 +9,7 @@ import csv
 import os
 from check_int_conn import is_connected
 from jamspell_checker import fix_fragment
+from gingerit_checker import spell_checker
 
 
 r'''
@@ -26,6 +27,7 @@ def scrape_comments() -> list:
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
     if is_connected():
+        print("Connected")
         flag = 1
         link = input("Enter link: ")
 
@@ -40,6 +42,7 @@ def scrape_comments() -> list:
                         driver,
                         1000  # increase if low internet speed
                     )
+                    # https://www.youtube.com/watch?v=cZFJyJzYugs
                     # https://www.youtube.com/watch?v=mO0OuR26IZM&pp=ygUMZXh0cmFjdGlvbiAy
                     driver.get(link)
                 except:
@@ -57,7 +60,10 @@ def scrape_comments() -> list:
 
                 for comment in wait.until(EC.presence_of_all_elements_located((By.ID, "content-text"))):
                     if (comment.text.strip() != ''):
-                        corrected = fix_fragment(comment.text)
+                        try:
+                            corrected = spell_checker(fix_fragment(comment.text))
+                        except:
+                            corrected = comment.text
                         data.append(corrected)
                 return data
         data = get_comments()
