@@ -1,0 +1,8 @@
+Import r without runtime error ->Open r code ->Check server connection:chromedriver112.exe open chrome
+->get comments from web scraping
+->else use default.csv file’ for comments
+Now after getting comments we need to filter this= jamspell used ->
+ how do review of filtered comments obtained ->import library(syuzhet)
+Combine comments file and content 
+get_nrc_sentiment  to segregate positive and negative comments
+Removed corrector.LoadLangModel, due to hang error
