@@ -1,3 +1,5 @@
+# Run "pip install -r requirement.txt" and install all the required packages
+
 from flask import Flask, render_template, request
 import services
 import os
